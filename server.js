@@ -39,7 +39,7 @@ serverapp.engine('html',engines.mustache);//require('ejs').renderFile)//engines.
 
 /* Render is needed if index becomes dynamic */
 serverapp.get('/', function (req, res) {
-	res.sendFile(path.join(serverPath,'home.html'));
+	res.sendFile(path.join(serverPath,'index.html'));
 	if(debug){console.log('Get request at root');}
 }); 
 
