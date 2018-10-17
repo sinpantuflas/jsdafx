@@ -1,9 +1,8 @@
 JSDAFX
 =============
-###This is a small readme, not intended for
-release things.
+### This is a small readme, not intended for release things.
 
-##Installation
+## Installation
 To install jsdafx for development on your 
 localhost, run:
 ```
