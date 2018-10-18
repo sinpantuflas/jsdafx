@@ -47,7 +47,8 @@ module.exports = function(grunt) {
           plugins: [ resolve() ],
         },
         files: {
-          'deps_bundle.js': ['deps.js'],
+          'build/deps.js': ['deps.js'],
+          'build/common.js': ['common.js'],
           'build/qdsproc.js': ['qdsproc.js'],
           'build/ovsproc.js': ['ovsproc.js'],
         },
@@ -55,13 +56,14 @@ module.exports = function(grunt) {
     },
     uglify: {
       dist: {
+        options: {
+          toplevel: true,
+        },
         files: {
           'dist/qdsproc.js': ['build/qdsproc.js'],
           'dist/common.js': [
-            'common-polyfill.js',
-            'deps_bundle.js',
-            'common-audio.js',
-            'graph.js',
+            'build/common.js',
+            'build/deps.js',
           ],
           'dist/qds.js': ['qds.js'],
           'dist/ovsproc.js': ['build/ovsproc.js'],
