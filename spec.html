@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Pitch Tracking</title>
-  <script src="common-polyfill.js"></script>
-  <script src="common-audio.js"></script>
-  <script src="graph.js"></script>
+<!--  <script src="common.js"></script> -->
+<!--  <script src="graph.js"></script> -->
   <script src="https://unpkg.com/audioworklet-polyfill/dist/audioworklet-polyfill.js"></script>
-  <!-- /build -->
-  <script src="qds.js"></script>
+  <script type="module" src="spec.js"></script>
 </head>
 
 <body>
@@ -23,12 +21,41 @@
     scriptElem.parentElement.replaceChild(ctrls.content, scriptElem);
   });
   </script>
+  <!-- /build -->
+  <div id="graph" style="width: 500px; height: 200px;">
+    <canvas id="axiscanvas" width="500" height="200"
+      style="position: absolute; z-index: 1" ></canvas>
+    <canvas id="funccanvas" width="500" height="200"
+      style="position: absolute; z-index: 2" ></canvas>
+    <canvas id="cursorcanvas" width="500" height="200"
+      style="position: absolute; z-index: 3" ></canvas>
+  </div>
+  <div style="width: 500px; height: 220px;" align="center" >
+    <img src="images/pll/pll.png" id="diagram" />
+  </div>
+    <div>
+    <table border="0" style="width: 500px;">
+      <tr>
+        <td><input id="linear" type="checkbox" />linear</td>
+        <td>PLL Tracking</td>
+        <td><input id="Enable" type="checkbox" />Enable</td>
+        <td><input id="Low Pass" type="checkbox" />LP Filter</td>
+      </tr>
+      <tr>
+        <td><input id="Smooth" type="checkbox" />Smooth</td>
+        <td>Q Loop filter<input id="QLoop" name="QLoop" value="0.6" type="number"></td>
+        <td>Loop Gain<input id="KLoop" name="KLoop" value="20" type="number"></td>
+        <td>LP fc<input id="fcLoop" name="fcLoop" value="250" type="number"></td>
+      </tr>
+    </table>
+  </div>
+  </br>
 
   <div>
   This script demonstrates the use of a phase locked loop pitch tracker
-using the spectrogram and the correlogram.
-It also demonstrates a synthesized waveform using the resulting pitch 
-track and a multi sinus oscilator.
+  using the spectrogram and <s>(the correlogram)</s>.</br>
+  (It also demonstrates a <s>synthesized waveform using the resulting pitch 
+  track and a multi sinus oscilator</s>).
   </div>
 
 </body>
