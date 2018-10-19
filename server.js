@@ -19,7 +19,6 @@ for more info.
 */
 
 var express = require('express')
-var engines = require('consolidate')
 var path = require('path')//To handle path strings
 var serverapp = express();
 var listeningport = 8040; //Can be set to your preference
@@ -31,7 +30,6 @@ var serverPath = path.join(__dirname);
 
 /* For other pages */
 serverapp.set('views', __dirname);
-serverapp.engine('html',engines.mustache);//require('ejs').renderFile)//engines.mustache)
 //serverapp.set('view engine', 'html');
 //serverapp.engine('html', require('ejs').renderFile);
 //routr = require('express').Router();
