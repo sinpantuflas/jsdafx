@@ -37,12 +37,13 @@ serverapp.engine('html',engines.mustache);//require('ejs').renderFile)//engines.
 //routr = require('express').Router();
 //serverapp.use(routr);
 
-/* Render is needed if index becomes dynamic */
+/* Website's request at root */
 serverapp.get('/', function (req, res) {
 	res.sendFile(path.join(serverPath,'index.html'));
 	if(debug){console.log('Get request at root');}
 }); 
 
+/* This is very unsecure. Not intended for non-local bindings */
 serverapp.get('*', function (req, res) {
 	try{
 		res.render(path.join(serverPath,req.originalUrl));
@@ -66,18 +67,28 @@ serverapp.all('*', function (req, res) {
 	if(debug){console.log('err2 Request at: ',req.originalUrl, ' with ', req.method);}
 });
 
-/*
+
+/* Next lines are intended for secure page-specific routing *//*
+//Oversampling
 serverapp.get('/ovs.html', function (req, res) {
 	res.render(path.join(__dirname,'ovs.html'),{ root : __dirname});
 	if(debug){console.log('Connected to ovs\n');}
 }); 
 
+//Playback control
 serverapp.get('/playback_control_buttons.html', function (req, res) {
 	res.render('playback_control_buttons.html',{ root : __dirname});
 	if(debug){console.log('Connected to playback\n');}
 }); 
 
+//Quantization
+serverapp.get('/qds.html', function (req, res) {
+	res.render('qds.html',{ root : __dirname});
+	if(debug){console.log('Connected to qds\n');}
+}); 
 
+
+/* Helper function for watching routes in console *//*
 routr.use(':*', function(req, res, next) {
   console.log('URL:', req.originalUrl);
   next();
@@ -87,15 +98,7 @@ routr.use(':*', function(req, res, next) {
 });
 */
 
-/*
-
-routr.get('/qds.html', function (req, res) {
-	res.render('qds.html',{ root : __dirname});
-	if(debug){console.log('Connected to qds\n');}
-}); 
-*/
-
-
+/* Main server function */
 serverapp.listen(listeningport, function() {
 	console.log('Express server for jsdafx listening on\n https//localhost:8040')
 });
