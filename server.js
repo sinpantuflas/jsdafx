@@ -23,7 +23,7 @@ var path = require('path')//To handle path strings
 var serverapp = express();
 var listeningport = 8040; //Can be set to your preference
 var debug = 0;
-var serverPath = path.join(__dirname);
+var serverPath = path.join(__dirname, '/dist');
 
 /* Since index is static */
 //serverapp.use(express.static(serverPath));
@@ -73,20 +73,14 @@ serverapp.get('/ovs.html', function (req, res) {
 	if(debug){console.log('Connected to ovs\n');}
 }); 
 
-//Playback control
-serverapp.get('/playback_control_buttons.html', function (req, res) {
-	res.render('playback_control_buttons.html',{ root : __dirname});
-	if(debug){console.log('Connected to playback\n');}
-}); 
-
 //Quantization
 serverapp.get('/qds.html', function (req, res) {
 	res.render('qds.html',{ root : __dirname});
 	if(debug){console.log('Connected to qds\n');}
 }); 
 
-
-/* Helper function for watching routes in console *//*
+/* Helper function for watching routes in console - 
+Not intended for any other use *//*
 routr.use(':*', function(req, res, next) {
   console.log('URL:', req.originalUrl);
   next();
@@ -100,4 +94,3 @@ routr.use(':*', function(req, res, next) {
 serverapp.listen(listeningport, function() {
 	console.log('Express server for jsdafx listening on\n https//localhost:8040')
 });
-
